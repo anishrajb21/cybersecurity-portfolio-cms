@@ -27,7 +27,7 @@ function Settings() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:5000/api/auth/change-password",
+        "https://cybersecurity-portfolio-cms.onrender.com/api/auth/change-password",
         { currentPassword: form.currentPassword, newPassword: form.newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

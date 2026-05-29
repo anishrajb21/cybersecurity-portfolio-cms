@@ -34,7 +34,7 @@ function Profile() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/profile").then(res => {
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/profile").then(res => {
       if (res.data) {
         setForm({
           name: res.data.name || "",
@@ -44,7 +44,7 @@ function Profile() {
         });
         setContacts(res.data.contacts || []);
         setStats(res.data.stats || []);
-        if (res.data.image) setExisting("http://localhost:5000" + res.data.image);
+        if (res.data.image) setExisting("https://cybersecurity-portfolio-cms.onrender.com" + res.data.image);
         if (res.data.resumeUrl?.startsWith("/uploads/")) setExistingResume(res.data.resumeUrl);
       }
     });
@@ -100,7 +100,7 @@ function Profile() {
       if (image) data.append("image", image);
       if (!image && !existing) data.append("removeImage", "true");
       if (resume) data.append("resume", resume);
-      await axios.post("http://localhost:5000/api/profile", data);
+      await axios.post("https://cybersecurity-portfolio-cms.onrender.com/api/profile", data);
       toast.success("Profile updated successfully");
     } catch {
       toast.error("Update failed");

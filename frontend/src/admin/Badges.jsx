@@ -12,7 +12,7 @@ function Badges() {
   const [editImage, setEditImage] = useState(null);
 
   const load = async () => {
-    const res = await axios.get("http://localhost:5000/api/badges");
+    const res = await axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/badges");
     setBadges(res.data);
   };
 
@@ -27,7 +27,7 @@ function Badges() {
       data.append("credentialId", form.credentialId);
       data.append("verifyUrl", form.verifyUrl);
       if (image) data.append("image", image);
-      await axios.post("http://localhost:5000/api/badges", data);
+      await axios.post("https://cybersecurity-portfolio-cms.onrender.com/api/badges", data);
       toast.success("Badge added");
       setForm({ title: "", issuer: "", credentialId: "", verifyUrl: "" });
       setImage(null);
@@ -36,7 +36,7 @@ function Badges() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/badges/${id}`);
+    await axios.delete(`https://cybersecurity-portfolio-cms.onrender.com/api/badges/${id}`);
     toast.success("Deleted");
     load();
   };
@@ -49,7 +49,7 @@ function Badges() {
       data.append("credentialId", editForm.credentialId || "");
       data.append("verifyUrl", editForm.verifyUrl || "");
       if (editImage) data.append("image", editImage);
-      await axios.put(`http://localhost:5000/api/badges/${id}`, data);
+      await axios.put(`https://cybersecurity-portfolio-cms.onrender.com/api/badges/${id}`, data);
       toast.success("Updated");
       setEditId(null);
       load();
@@ -108,7 +108,7 @@ function Badges() {
                 </div>
               ) : (
                 <>
-                  {b.image && <img src={"http://localhost:5000" + b.image} className="w-full h-28 object-contain rounded-lg mb-3 border border-[#1e2d4a]" alt="" />}
+                  {b.image && <img src={"https://cybersecurity-portfolio-cms.onrender.com" + b.image} className="w-full h-28 object-contain rounded-lg mb-3 border border-[#1e2d4a]" alt="" />}
                   <p className="text-white text-sm font-medium">{b.title}</p>
                   <p className="text-[#4b5e7a] text-xs mb-1">{b.issuer}</p>
                   {b.credentialId && <p className="text-[#4b5e7a] text-xs mb-1">ID: {b.credentialId}</p>}

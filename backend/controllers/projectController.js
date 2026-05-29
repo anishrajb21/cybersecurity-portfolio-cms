@@ -22,7 +22,7 @@ const addProject = async (req, res) => {
       github: req.body.github,
 
       image: req.file
-        ? `http://localhost:5000/uploads/${req.file.filename}`
+        ? `https://cybersecurity-portfolio-cms.onrender.com/uploads/${req.file.filename}`
         : "",
     });
 

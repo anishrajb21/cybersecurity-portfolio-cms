@@ -6,7 +6,7 @@ function AdminLayout({ title, children }) {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/profile")
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/profile")
       .then(res => setProfile(res.data))
       .catch(() => {});
   }, []);
@@ -20,7 +20,7 @@ function AdminLayout({ title, children }) {
           <div className="w-12 h-12 rounded-full border-2 border-green-400 overflow-hidden bg-[#0f172a] flex items-center justify-center">
             {profile?.image ? (
               <img
-                src={"http://localhost:5000" + profile.image}
+                src={"https://cybersecurity-portfolio-cms.onrender.com" + profile.image}
                 alt="profile"
                 className="w-full h-full object-cover"
               />

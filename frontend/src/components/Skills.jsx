@@ -5,7 +5,7 @@ function Skills() {
   const [sections, setSections] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/skills").then(res => setSections(res.data));
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/skills").then(res => setSections(res.data));
   }, []);
 
   return (

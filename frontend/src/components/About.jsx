@@ -5,7 +5,7 @@ function About() {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/profile").then(res => setProfile(res.data));
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/profile").then(res => setProfile(res.data));
   }, []);
 
   return (

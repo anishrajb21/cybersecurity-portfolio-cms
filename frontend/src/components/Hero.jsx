@@ -5,7 +5,7 @@ function Hero() {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/profile").then(res => setProfile(res.data));
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/profile").then(res => setProfile(res.data));
   }, []);
 
   if (!profile) return (
@@ -14,7 +14,7 @@ function Hero() {
 
   const resumeHref = profile.resumeUrl
     ? profile.resumeUrl.startsWith("/uploads/")
-      ? "http://localhost:5000" + profile.resumeUrl
+      ? "https://cybersecurity-portfolio-cms.onrender.com" + profile.resumeUrl
       : profile.resumeUrl
     : null;
 
@@ -32,7 +32,7 @@ function Hero() {
         <div className="w-40 h-40 rounded-full border-4 border-green-400 mx-auto mb-10 shadow-[0_0_30px_#00ff88] overflow-hidden bg-[#0f172a] flex items-center justify-center">
           {profile.image ? (
             <img
-              src={"http://localhost:5000" + profile.image}
+              src={"https://cybersecurity-portfolio-cms.onrender.com" + profile.image}
               alt="profile"
               className="w-full h-full object-cover"
             />

@@ -33,7 +33,7 @@ function ForgotPassword() {
     if (!email.trim()) return setError("Enter your email");
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/forgot-password", { email });
+      await axios.post("https://cybersecurity-portfolio-cms.onrender.com/api/auth/forgot-password", { email });
       setMsg("OTP sent to your email. Check inbox.");
       setError("");
       setStep(2);
@@ -49,7 +49,7 @@ function ForgotPassword() {
     if (!newPassword.trim()) return setError("Enter new password");
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/reset-password", { email, otp, newPassword });
+      await axios.post("https://cybersecurity-portfolio-cms.onrender.com/api/auth/reset-password", { email, otp, newPassword });
       setMsg("Password reset successfully! Redirecting...");
       setError("");
       setTimeout(() => navigate("/login"), 2000);

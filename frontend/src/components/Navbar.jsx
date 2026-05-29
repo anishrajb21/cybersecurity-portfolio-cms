@@ -5,7 +5,7 @@ function Navbar() {
   const [siteTitle, setSiteTitle] = useState("AR");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/profile").then(res => {
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/profile").then(res => {
       if (res.data?.siteTitle) setSiteTitle(res.data.siteTitle);
     });
   }, []);

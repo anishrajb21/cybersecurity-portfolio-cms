@@ -6,7 +6,7 @@ function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/projects").then(res => setProjects(res.data));
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/projects").then(res => setProjects(res.data));
   }, []);
 
   return (
@@ -18,7 +18,7 @@ function Projects() {
           {projects.map((project) => (
             <div key={project._id} className="grid md:grid-cols-2 gap-10 items-center bg-[#0f172a] border border-gray-800 rounded-3xl overflow-hidden">
               {project.image
-                ? <img src={"http://localhost:5000" + project.image} className="w-full h-full min-h-[300px] object-cover" alt="" />
+                ? <img src={"https://cybersecurity-portfolio-cms.onrender.com" + project.image} className="w-full h-full min-h-[300px] object-cover" alt="" />
                 : <div className="h-full min-h-[300px] bg-gradient-to-br from-green-400/20 to-cyan-500/10 flex items-center justify-center"><h1 className="text-5xl font-black text-green-400">PROJECT</h1></div>
               }
               <div className="p-10">

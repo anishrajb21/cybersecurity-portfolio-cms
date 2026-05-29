@@ -12,7 +12,7 @@ function Certificates() {
   const [editImage, setEditImage] = useState(null);
 
   const load = async () => {
-    const res = await axios.get("http://localhost:5000/api/certificates");
+    const res = await axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/certificates");
     setCerts(res.data);
   };
 
@@ -27,7 +27,7 @@ function Certificates() {
       data.append("credentialId", form.credentialId);
       data.append("verifyUrl", form.verifyUrl);
       if (image) data.append("image", image);
-      await axios.post("http://localhost:5000/api/certificates", data);
+      await axios.post("https://cybersecurity-portfolio-cms.onrender.com/api/certificates", data);
       toast.success("Certificate added");
       setForm({ title: "", issuer: "", credentialId: "", verifyUrl: "" });
       setImage(null);
@@ -36,7 +36,7 @@ function Certificates() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/certificates/${id}`);
+    await axios.delete(`https://cybersecurity-portfolio-cms.onrender.com/api/certificates/${id}`);
     toast.success("Deleted");
     load();
   };
@@ -49,7 +49,7 @@ function Certificates() {
       data.append("credentialId", editForm.credentialId || "");
       data.append("verifyUrl", editForm.verifyUrl || "");
       if (editImage) data.append("image", editImage);
-      await axios.put(`http://localhost:5000/api/certificates/${id}`, data);
+      await axios.put(`https://cybersecurity-portfolio-cms.onrender.com/api/certificates/${id}`, data);
       toast.success("Updated");
       setEditId(null);
       load();
@@ -108,7 +108,7 @@ function Certificates() {
                 </div>
               ) : (
                 <div className="flex items-center gap-4">
-                  {c.image && <img src={"http://localhost:5000" + c.image} className="w-14 h-14 rounded-lg object-cover border border-[#1e2d4a]" alt="" />}
+                  {c.image && <img src={"https://cybersecurity-portfolio-cms.onrender.com" + c.image} className="w-14 h-14 rounded-lg object-cover border border-[#1e2d4a]" alt="" />}
                   <div className="flex-1 min-w-0">
                     <p className="text-white font-medium text-sm">{c.title}</p>
                     <p className="text-[#4b5e7a] text-xs">{c.issuer}</p>

@@ -14,7 +14,7 @@ function Projects() {
   const [editPreview, setEditPreview] = useState(null);
 
   const fetch = async () => {
-    const res = await axios.get("http://localhost:5000/api/projects");
+    const res = await axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/projects");
     setProjects(res.data);
   };
 
@@ -40,7 +40,7 @@ function Projects() {
       data.append("description", form.description);
       data.append("github", form.github);
       if (image) data.append("image", image);
-      await axios.post("http://localhost:5000/api/projects", data);
+      await axios.post("https://cybersecurity-portfolio-cms.onrender.com/api/projects", data);
       toast.success("Project added successfully");
       setForm({ title: "", description: "", github: "" });
       setImage(null);
@@ -50,7 +50,7 @@ function Projects() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/projects/${id}`);
+    await axios.delete(`https://cybersecurity-portfolio-cms.onrender.com/api/projects/${id}`);
     toast.success("Deleted successfully");
     fetch();
   };
@@ -62,7 +62,7 @@ function Projects() {
       data.append("description", editForm.description);
       data.append("github", editForm.github);
       if (editImage) data.append("image", editImage);
-      await axios.put(`http://localhost:5000/api/projects/${id}`, data);
+      await axios.put(`https://cybersecurity-portfolio-cms.onrender.com/api/projects/${id}`, data);
       toast.success("Updated successfully");
       setEditId(null);
       setEditPreview(null);
@@ -116,7 +116,7 @@ function Projects() {
                     </label>
                     {(editPreview || p.image) && (
                       <div className="relative inline-block">
-                        <img src={editPreview || "http://localhost:5000" + p.image} className="w-28 h-20 object-cover rounded-lg border border-[#1e2d4a]" alt="" />
+                        <img src={editPreview || "https://cybersecurity-portfolio-cms.onrender.com" + p.image} className="w-28 h-20 object-cover rounded-lg border border-[#1e2d4a]" alt="" />
                         <button type="button" onClick={removeEditImage} className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">✕</button>
                       </div>
                     )}
@@ -128,7 +128,7 @@ function Projects() {
                 </div>
               ) : (
                 <div className="flex items-center gap-4">
-                  {p.image && <img src={"http://localhost:5000" + p.image} className="w-16 h-16 rounded-lg object-cover border border-[#1e2d4a]" alt="" />}
+                  {p.image && <img src={"https://cybersecurity-portfolio-cms.onrender.com" + p.image} className="w-16 h-16 rounded-lg object-cover border border-[#1e2d4a]" alt="" />}
                   <div className="flex-1">
                     <p className="text-white font-medium text-sm">{p.title}</p>
                     <p className="text-[#4b5e7a] text-xs mt-0.5">{p.description}</p>

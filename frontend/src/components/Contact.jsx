@@ -8,7 +8,7 @@ function Contact() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/profile").then(res => setContacts(res.data.contacts || []));
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/profile").then(res => setContacts(res.data.contacts || []));
   }, []);
 
   return (

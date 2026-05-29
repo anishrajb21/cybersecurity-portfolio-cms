@@ -5,7 +5,7 @@ function Certificates() {
   const [certs, setCerts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/certificates").then(res => setCerts(res.data));
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/certificates").then(res => setCerts(res.data));
   }, []);
 
   return (
@@ -17,7 +17,7 @@ function Certificates() {
           {certs.map((cert) => (
             <div key={cert._id} className="bg-[#0f172a] border border-gray-800 rounded-3xl overflow-hidden hover:border-green-400 hover:-translate-y-2 hover:shadow-[0_0_30px_#00ff88] transition duration-300">
               {cert.image
-                ? <img src={"http://localhost:5000" + cert.image} className="w-full h-48 object-cover" alt="" />
+                ? <img src={"https://cybersecurity-portfolio-cms.onrender.com" + cert.image} className="w-full h-48 object-cover" alt="" />
                 : <div className="h-48 bg-gradient-to-br from-green-400/20 to-cyan-500/10 flex items-center justify-center"><h2 className="text-5xl font-black text-green-400">CERT</h2></div>
               }
               <div className="p-8">

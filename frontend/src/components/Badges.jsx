@@ -5,7 +5,7 @@ function Badges() {
   const [badges, setBadges] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/badges").then(res => setBadges(res.data));
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/badges").then(res => setBadges(res.data));
   }, []);
 
   return (
@@ -17,7 +17,7 @@ function Badges() {
           {badges.map((b) => (
             <div key={b._id} className="bg-[#0f172a] border border-gray-800 rounded-3xl p-6 text-center hover:border-green-400 hover:shadow-[0_0_30px_#00ff88] transition">
               {b.image
-                ? <img src={"http://localhost:5000" + b.image} className="w-24 h-24 object-contain mx-auto mb-4" alt="" />
+                ? <img src={"https://cybersecurity-portfolio-cms.onrender.com" + b.image} className="w-24 h-24 object-contain mx-auto mb-4" alt="" />
                 : <div className="w-24 h-24 rounded-full bg-green-400/20 mx-auto mb-4 flex items-center justify-center"><span className="text-green-400 text-3xl font-black">B</span></div>
               }
               <h3 className="text-white font-bold text-sm">{b.title}</h3>

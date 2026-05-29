@@ -12,7 +12,7 @@ function Skills() {
   const [newSkillInputs, setNewSkillInputs] = useState({});
 
   const load = () => {
-    axios.get("http://localhost:5000/api/skills")
+    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/skills")
       .then(res => setSections(res.data))
       .catch(() => toast.error("Failed to load skills"));
   };
@@ -22,7 +22,7 @@ function Skills() {
   const addSection = async () => {
     if (!newSection.trim()) return;
     try {
-      await axios.post("http://localhost:5000/api/skills", { section: newSection, skills: [] });
+      await axios.post("https://cybersecurity-portfolio-cms.onrender.com/api/skills", { section: newSection, skills: [] });
       toast.success("Section added");
       setNewSection("");
       load();
@@ -31,7 +31,7 @@ function Skills() {
 
   const deleteSection = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/skills/${id}`);
+      await axios.delete(`https://cybersecurity-portfolio-cms.onrender.com/api/skills/${id}`);
       toast.success("Section deleted");
       load();
     } catch { toast.error("Delete failed"); }
@@ -46,7 +46,7 @@ function Skills() {
   const saveEdit = async (id) => {
     const skills = editSkills.split(",").map(s => s.trim()).filter(Boolean);
     try {
-      await axios.put(`http://localhost:5000/api/skills/${id}`, { section: editSection, skills });
+      await axios.put(`https://cybersecurity-portfolio-cms.onrender.com/api/skills/${id}`, { section: editSection, skills });
       toast.success("Updated");
       setEditingId(null);
       load();
@@ -58,7 +58,7 @@ function Skills() {
     if (!newSkill) return;
     const updatedSkills = [...s.skills, newSkill];
     try {
-      await axios.put(`http://localhost:5000/api/skills/${s._id}`, { section: s.section, skills: updatedSkills });
+      await axios.put(`https://cybersecurity-portfolio-cms.onrender.com/api/skills/${s._id}`, { section: s.section, skills: updatedSkills });
       toast.success("Skill added");
       setNewSkillInputs({ ...newSkillInputs, [s._id]: "" });
       load();
@@ -68,7 +68,7 @@ function Skills() {
   const removeSkillFromSection = async (s, skillIndex) => {
     const updatedSkills = s.skills.filter((_, i) => i !== skillIndex);
     try {
-      await axios.put(`http://localhost:5000/api/skills/${s._id}`, { section: s.section, skills: updatedSkills });
+      await axios.put(`https://cybersecurity-portfolio-cms.onrender.com/api/skills/${s._id}`, { section: s.section, skills: updatedSkills });
       toast.success("Skill removed");
       load();
     } catch { toast.error("Failed"); }
