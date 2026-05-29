@@ -5,15 +5,27 @@ function About() {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
-    axios.get("https://cybersecurity-portfolio-cms.onrender.com/api/profile").then(res => setProfile(res.data));
+    axios
+      .get("https://cybersecurity-portfolio-cms.onrender.com/api/profile")
+      .then((res) => setProfile(res.data));
   }, []);
 
   return (
-    <section id="about" className="min-h-screen flex flex-col justify-center px-20 border-t border-gray-800 bg-[#050816] text-white">
-      <h1 className="text-5xl font-bold text-green-500 mb-8 text-center">About Me</h1>
-      <p className="text-xl text-gray-300 leading-10 max-w-4xl mx-auto">
-        {profile?.about || "Add your about info from the admin panel."}
-      </p>
+    <section
+      id="about"
+      className="bg-[#050816] py-24 px-6 md:px-12"
+    >
+      <h1 className="text-center text-4xl md:text-5xl font-black text-green-400 mb-12">
+        About Me
+      </h1>
+
+      <div className="max-w-7xl mx-auto bg-[#0f172a] border border-gray-700 rounded-2xl p-8 md:p-12 shadow-lg">
+
+        <div className="text-gray-300 text-base md:text-lg leading-9 whitespace-pre-line">
+          {profile?.about || "No About Information"}
+        </div>
+
+      </div>
     </section>
   );
 }

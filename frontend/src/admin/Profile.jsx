@@ -20,7 +20,14 @@ const STAT_PRESETS = [
 ];
 
 function Profile() {
-  const [form, setForm] = useState({ name: "", about: "", resumeUrl: "", siteTitle: "" });
+  const [form, setForm] = useState({
+    name: "",
+    title: "",
+    tagline: "",
+    about: "",
+    resumeUrl: "",
+    siteTitle: "",
+  });
   const [contacts, setContacts] = useState([]);
   const [newContact, setNewContact] = useState({ type: "email", value: "" });
   const [customType, setCustomType] = useState("");
@@ -38,8 +45,12 @@ function Profile() {
       if (res.data) {
         setForm({
           name: res.data.name || "",
+          title: res.data.title || "",
+          tagline: res.data.tagline || "",
           about: res.data.about || "",
-          resumeUrl: res.data.resumeUrl?.startsWith("/uploads/") ? "" : res.data.resumeUrl || "",
+          resumeUrl: res.data.resumeUrl?.startsWith("/uploads/")
+            ? ""
+            : res.data.resumeUrl || "",
           siteTitle: res.data.siteTitle || "",
         });
         setContacts(res.data.contacts || []);
@@ -92,6 +103,8 @@ function Profile() {
     try {
       const data = new FormData();
       data.append("name", form.name);
+      data.append("title", form.title);
+      data.append("tagline", form.tagline);
       data.append("about", form.about);
       data.append("siteTitle", form.siteTitle);
       data.append("resumeUrl", form.resumeUrl);
@@ -151,6 +164,45 @@ function Profile() {
           <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
             placeholder="Anish Raj"
             className="w-full bg-[#0d1526] border border-[#1e2d4a] text-white p-3 rounded-xl outline-none focus:border-green-400 text-sm" />
+        </div>
+        {/* Hero Title */}
+        <div>
+          <label className="text-xs text-[#4b5e7a] mb-1 block">
+            Hero Title
+          </label>
+
+          <input
+            type="text"
+            value={form.title}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                title: e.target.value,
+              })
+            }
+            placeholder="Cybersecurity Student"
+            className="w-full bg-[#0d1526] border border-[#1e2d4a] text-white p-3 rounded-xl outline-none focus:border-green-400 text-sm"
+          />
+        </div>
+
+        {/* Hero Tagline */}
+        <div>
+          <label className="text-xs text-[#4b5e7a] mb-1 block">
+            Hero Tagline
+          </label>
+
+          <textarea
+            rows={3}
+            value={form.tagline}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                tagline: e.target.value,
+              })
+            }
+            placeholder="Focused on SOC Operations, Networking, Linux, SIEM Monitoring, Threat Detection and Security Analysis."
+            className="w-full bg-[#0d1526] border border-[#1e2d4a] text-white p-3 rounded-xl outline-none focus:border-green-400 text-sm"
+          />
         </div>
 
         {/* About */}
