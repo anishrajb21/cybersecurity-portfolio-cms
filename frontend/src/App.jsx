@@ -28,7 +28,7 @@ function App() {
       <Route path="/admin/badges" element={<PrivateRoute><Badges /></PrivateRoute>} />
       <Route path="/admin/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
       <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    </Routes> 
   );
 }
 
