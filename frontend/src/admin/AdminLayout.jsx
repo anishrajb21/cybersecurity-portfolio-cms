@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
 
-const API = "const API = "https://cybersecurity-portfolio-cms.onrender.com";";
+const API ="https://cybersecurity-portfolio-cms.onrender.com";
 
 function AdminLayout({ title, children }) {
   const [profile, setProfile] = useState(null);
