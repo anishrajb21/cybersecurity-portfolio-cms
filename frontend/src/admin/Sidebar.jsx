@@ -1,97 +1,169 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
+import {
+  User,
+  ShieldCheck,
+  Award,
+  FolderKanban,
+  Wrench,
+  Settings,
+  LogOut,
+  ChevronRight,
+} from "lucide-react";
 
-const API = "const API = "https://cybersecurity-portfolio-cms.onrender.com";";
-
-const NAV = [
-  { path: "/admin", label: "Dashboard", icon: "📊", end: true },
-  { path: "/admin/profile", label: "Profile", icon: "👤" },
-  { path: "/admin/projects", label: "Projects", icon: "📁" },
-  { path: "/admin/skills", label: "Skills", icon: "🛠" },
-  { path: "/admin/certificates", label: "Certificates", icon: "🏆" },
-  { path: "/admin/badges", label: "Badges", icon: "🎖" },
-  { path: "/admin/settings", label: "Settings", icon: "⚙️" },
+const navItems = [
+  { to: "/admin/profile", label: "Profile", icon: User },
+  { to: "/admin/badges", label: "Badges", icon: ShieldCheck },
+  { to: "/admin/certificates", label: "Certificates", icon: Award },
+  { to: "/admin/projects", label: "Projects", icon: FolderKanban },
+  { to: "/admin/skills", label: "Skills", icon: Wrench },
+  { to: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
-function Sidebar() {
-  const [profile, setProfile] = useState(null);
+export default function Sidebar() {
+  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios.get(`${API}/api/profile`)
-      .then(res => setProfile(res.data))
-      .catch(() => {});
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
 
+  const width = expanded ? "160px" : "52px";
+
   return (
-    <div className="w-56 shrink-0 bg-[#080f20] border-r border-[#1e2d4a] min-h-screen flex flex-col">
-
-      {/* Logo / Brand */}
-      <div className="h-16 flex items-center px-5 border-b border-[#1e2d4a]">
-        <span className="text-green-400 font-black text-lg tracking-wider">
-          {profile?.siteTitle || "AR"}
-        </span>
-        <span className="ml-2 text-[#4b5e7a] text-xs font-medium">Admin</span>
+    <aside
+      style={{
+        width,
+        minWidth: width,
+        height: "100vh",
+        position: "sticky",
+        top: 0,
+        display: "flex",
+        flexDirection: "column",
+        background: "#060d1f",
+        borderRight: "1px solid #1e2d4a",
+        zIndex: 50,
+        transition: "width 0.2s ease, min-width 0.2s ease",
+        overflow: "hidden",
+      }}
+    >
+      {/* Logo / Toggle button */}
+      <div
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          height: "52px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: expanded ? "space-between" : "center",
+          padding: expanded ? "0 12px" : "0",
+          borderBottom: "1px solid #1e2d4a",
+          flexShrink: 0,
+          cursor: "pointer",
+          userSelect: "none",
+        }}
+      >
+        <div
+          style={{
+            width: "26px",
+            height: "26px",
+            borderRadius: "6px",
+            background: "#22c55e",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "12px",
+            fontWeight: "800",
+            color: "#fff",
+            flexShrink: 0,
+          }}
+        >
+          A
+        </div>
+        {expanded && (
+          <ChevronRight
+            size={14}
+            color="#64748b"
+            style={{ transform: "rotate(180deg)", transition: "transform 0.2s" }}
+          />
+        )}
       </div>
 
-      {/* Profile strip */}
-      <div className="flex items-center gap-3 px-4 py-4 border-b border-[#1e2d4a]">
-        <div className="w-9 h-9 rounded-full border border-green-400/50 overflow-hidden bg-[#0f172a] flex items-center justify-center shrink-0">
-          {profile?.image
-            ? <img src={`${API}${profile.image}`} alt="" className="w-full h-full object-cover" />
-            : <span className="text-green-400 font-bold text-sm">{profile?.name?.charAt(0) || "A"}</span>
-          }
-        </div>
-        {/* FIX: truncate + whitespace-nowrap keeps name on one line */}
-        <div className="flex-1 min-w-0">
-          <p className="text-white text-xs font-semibold truncate whitespace-nowrap leading-tight">
-            {profile?.name || "Admin"}
-          </p>
-          <p className="text-[#4b5e7a] text-xs truncate whitespace-nowrap leading-tight">
-            {profile?.title || "Portfolio Admin"}
-          </p>
-        </div>
-      </div>
-
-      {/* Nav links */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
-        {NAV.map(item => (
+      {/* Nav items */}
+      <nav
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "stretch",
+          paddingTop: "6px",
+          paddingBottom: "6px",
+        }}
+      >
+        {navItems.map(({ to, label, icon: Icon }) => (
           <NavLink
-            key={item.path}
-            to={item.path}
-            end={item.end}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
-                isActive
-                  ? "bg-green-400/10 text-green-400 border border-green-400/20"
-                  : "text-[#7a8fa8] hover:text-white hover:bg-[#0d1526]"
-              }`
-            }
+            key={to}
+            to={to}
+            title={!expanded ? label : undefined}
+            style={({ isActive }) => ({
+              height: "36px",
+              borderRadius: "8px",
+              margin: "1px 6px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "0 8px",
+              color: isActive ? "#22c55e" : "#64748b",
+              background: isActive ? "rgba(34,197,94,0.12)" : "transparent",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+            })}
           >
-            <span className="text-base leading-none">{item.icon}</span>
-            <span className="font-medium">{item.label}</span>
+            <Icon size={16} style={{ flexShrink: 0 }} />
+            {expanded && (
+              <span style={{ fontSize: "13px", fontWeight: 500 }}>{label}</span>
+            )}
           </NavLink>
         ))}
       </nav>
 
       {/* Logout */}
-      <div className="px-3 pb-5">
+      <div
+        style={{
+          flexShrink: 0,
+          height: "48px",
+          display: "flex",
+          alignItems: "center",
+          borderTop: "1px solid #1e2d4a",
+          padding: "0 6px",
+        }}
+      >
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-[#7a8fa8] hover:text-red-400 hover:bg-red-400/5 transition-all"
+          title={!expanded ? "Logout" : undefined}
+          style={{
+            height: "36px",
+            width: "100%",
+            borderRadius: "8px",
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "0 8px",
+            color: "#f87171",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
         >
-          <span className="text-base leading-none">🚪</span>
-          <span className="font-medium">Logout</span>
+          <LogOut size={16} style={{ flexShrink: 0 }} />
+          {expanded && (
+            <span style={{ fontSize: "13px", fontWeight: 500 }}>Logout</span>
+          )}
         </button>
       </div>
-    </div>
+    </aside>
   );
 }
-
-export default Sidebar;

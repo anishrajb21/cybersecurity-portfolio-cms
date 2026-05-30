@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import AdminLayout from "../components/AdminLayout";
+import AdminLayout from "./AdminLayout";
 
 function Settings() {
   const [form, setForm] = useState({

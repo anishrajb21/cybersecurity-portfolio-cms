@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import AdminLayout from "../components/AdminLayout";
+import AdminLayout from "./AdminLayout";
 
 const CONTACT_TYPES = [
   { label: "Email", icon: "📧", key: "email" },

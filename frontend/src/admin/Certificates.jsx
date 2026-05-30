@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import AdminLayout from "../components/AdminLayout";
+import AdminLayout from "./AdminLayout";
 
 const API = "https://cybersecurity-portfolio-cms.onrender.com";
 
