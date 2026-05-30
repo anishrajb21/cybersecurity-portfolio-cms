@@ -53,3 +53,27 @@ temp/
 
 # MongoDB local
 *.db
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Environment variables — NEVER commit these
+.env
+backend/.env
+frontend/.env
+
+# Uploads folder — files are stored on Render, not in git
+backend/uploads/
+
+# Build output
+frontend/dist/
+frontend/build/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
